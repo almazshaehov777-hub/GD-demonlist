@@ -1,0 +1,41 @@
+html{
+    background: #111827;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+}
+.card{
+  background: 	#19243a;
+  display: flex;
+  margin-top: 20px;
+  width: 30%;
+  height: 130px;
+  width: 1000px;
+  color: white;
+  padding: 20px;
+  align-items: center;
+  border: 3px solid #26344F;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.card:hover{
+    transform: scale(1.02);
+    border: 3px solid rgb(241, 51, 51);
+}
+.placement{
+    margin-left: 25px;
+    font-size: 26px;
+    font-family: Montserrat;
+    color: #A0AFD1;
+}
+.nameLevel{
+    font-family: Montserrat;
+    font-size: 20px;
+    margin-left: 30px;
+}
+.prewiev{
+    width: 250px;
+    clip-path: inset(12.5% 0% 12.5% 0% round 10px);
+}
