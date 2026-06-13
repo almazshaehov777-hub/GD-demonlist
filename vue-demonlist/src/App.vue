@@ -19,7 +19,7 @@
       const responseImage = await fetch(`https://noembed.com/embed?url=${encodeURIComponent(datal.verification_url)}`);
       const dataImage = await responseImage.json();
       html += `
-        <div class="card">
+        <div class="card" onclick="window.location.href = 'level.html?id=${datal.id}'">
           <img src="${dataImage.thumbnail_url}" class="prewiev">
           <p class="placement">#${datal.placement}</p>
           <p class="nameLevel">${datal.name}</p>
