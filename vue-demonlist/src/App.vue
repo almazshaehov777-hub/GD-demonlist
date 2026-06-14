@@ -21,8 +21,15 @@
       html += `
         <div class="card" onclick="window.location.href = 'level.html?id=${datal.id}'">
           <img src="${dataImage.thumbnail_url}" class="prewiev">
-          <p class="placement">#${datal.placement}</p>
-          <p class="nameLevel">${datal.name}</p>
+          <div class="fullInfo">
+          <div class="mainContainer">
+            <p class="placement">#${datal.placement}</p>
+            <p class="nameLevel">${datal.name}</p>
+          </div>
+          <div class="secondContainer">
+            <p class="creator">${datal.holder} • <span class="verifier">${datal.verifier.username}</span></p>
+          </div>
+          </div>
         </div>
       `
     }
@@ -42,6 +49,7 @@
   </div>
   <header>
     <div class="bg">
+      <img src="./assets/image/icon.png" width="65" height="65" class="imageLogo">
       <h1 class="logo"><span class="gd">GD</span> Demonlist</h1>
     </div>
   </header>
@@ -58,7 +66,7 @@
 
   <footer>
     <div class="bgFooter">
-
+      <p class="footerText">Global Demonlist API • 2026</p>
     </div>
   </footer>
 </template>
@@ -72,16 +80,15 @@
   padding: 5px;
   z-index: 1;
 }
-.logo{
-  margin-left: 30px;
-}
 .container{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 .gd{
   color: 	#A0AFD1;
+  margin-left: 15px;
 }
 .loading{
   color: white;
@@ -127,5 +134,19 @@
 .containerBtn{
   display: flex;
   justify-content: center;
+}
+.bgFooter{
+  background: #0c111d;
+  display: flex;
+  padding: 25px;
+}
+.footerText{
+  font-family: Montserrat;
+  color: rgba(78, 78, 78, 0.6);
+}
+.imageLogo{
+  position: relative;
+  transform: translateY(10%) rotate(45deg);
+  margin-left: 60px;
 }
 </style>

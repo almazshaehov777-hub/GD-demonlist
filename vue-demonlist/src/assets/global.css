@@ -23,6 +23,7 @@ html, body{
 .card:hover{
     transform: scale(1.02);
     border: 3px solid rgb(241, 51, 51);
+    box-shadow: -10px 15px 10px #101520;
 }
 .placement{
     margin-left: 25px;
@@ -33,9 +34,35 @@ html, body{
 .nameLevel{
     font-family: Montserrat;
     font-size: 20px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .prewiev{
     width: 250px;
     clip-path: inset(12.5% 0% 12.5% 0% round 10px);
+}
+main{
+    min-height: 100vh;
+}
+.verifier{
+    color: lightgreen
+}
+.creator{
+    color: rgba(255, 255, 255, 0.8)
+}
+.secondContainer, .mainContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.fullInfo{
+    display: flex;
+    flex-direction: column;
+}
+.secondContainer{
+    margin-left: 25px;
+    font-family: Montserrat;
+    font-size: 16px;
+}
+.mainContainer{
+    height: 50px;
 }

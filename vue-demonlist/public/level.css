@@ -83,6 +83,7 @@ main{
     display: flex;
     flex-direction: column;
     font-size: 20px;
+    box-shadow: -10px 15px 10px #192133;
 }
 .cardContainer{
     display: grid;
@@ -101,4 +102,12 @@ main{
     margin-left: 20px;
     color: white;
     background: #19243a;
+}
+#image{
+    width: 450px;
+    clip-path: inset(12.5% 0% 12.5% 0% round 10px);
+}
+.imageCon{
+    display: flex;
+    justify-content: center;
 }

@@ -4,6 +4,11 @@ let id = urlParams.get('id');
 async function getLevel(){
     const promise = await fetch(`https://api.demonlist.org/level/classic/get?id=${id}`);
     const data = await promise.json();
+
+    const responseImage = await fetch(`https://noembed.com/embed?url=${encodeURIComponent(data.data.verification.video_url)}`);
+    const dataImage = await responseImage.json();
+    const imageUrl = dataImage.thumbnail_url;
+
     console.log(data);
 
     const name = document.getElementById('name');
@@ -16,6 +21,7 @@ async function getLevel(){
     const objects = document.getElementById('objects');
     const ingameID = document.getElementById('ingameID');
     const listPercent = document.getElementById('listPercent');
+    const image = document.getElementById('image');
 
     placement.textContent = `#${data.data.placement}`
     name.textContent = `${data.data.name} By ${data.data.holder}`;
@@ -26,11 +32,7 @@ async function getLevel(){
     objects.textContent = `Objects: ${data.data.objects}`;
     ingameID.textContent = `ID: ${data.data.ingame_id}`
     listPercent.textContent = `List %: ${data.data.list_percent}`
-    const videoPromise = await fetch(`https://api.microlink.io?url=${data.data.verification.video_url}&iframe=true`);
-    const videoData = await videoPromise.json();
-    videoCon.innerHTML = videoData.data.iframe.html;
-    const video = document.querySelector('iframe');
-    video.className = 'video';
+    image.src = imageUrl;
 }
 
 getLevel();
