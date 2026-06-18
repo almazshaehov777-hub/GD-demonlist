@@ -2,7 +2,7 @@
 import{ ref } from 'vue';
 
 let loading = ref(false);
-let globalData = ([
+let globalData = ref([
 
 ]);
 
@@ -15,6 +15,10 @@ async function getUserList(){
     loading.value = false;
 }
 getUserList();
+
+function goToUser(id){
+    window.location.href = `slayer.html?id=${id}`
+}
 </script>
 
 <template>
@@ -26,10 +30,12 @@ getUserList();
 
     <div class="main">
     <div class="playerContainer">
-        <div class="userCard" v-for="user in globalData">
+        <router-link :to="`/slayerInfo/?id=${user.id}`" v-for="user in globalData" class="transition">
+        <div class="userCard">
             <p><span class="userPlacement">#{{ user.placement }}</span> {{ user.username }}</p>
             <p class="points">Points: {{ user.points }}</p>
         </div>
+        </router-link>
     </div>
     </div>
 </template>
@@ -100,5 +106,8 @@ getUserList();
     font-family: Montserrat;
     color: white;
     margin-bottom: 50px;
+}
+.transition{
+    text-decoration: none;
 }
 </style>
