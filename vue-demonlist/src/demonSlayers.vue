@@ -43,12 +43,15 @@ function goToUser(id){
 <style scoped>
 .playerContainer{
     background: #19243a;
-    width: 550px;
-    padding: 20px;
+    width: 700px;
+    padding: 30px;
     border-radius: 15px;
-    max-height: 500px;
+    max-height: 750px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+.playerContainer::-webkit-scrollbar{
+    color: transparent;
 }
 .userCard{
     background: #27385a;
