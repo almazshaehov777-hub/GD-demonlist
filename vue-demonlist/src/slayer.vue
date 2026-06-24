@@ -24,10 +24,10 @@
 
             <div class="player-info-main">
                 <div class="player-placement-con">
-                    <p>Top: <span class="player-placement">#{{ globalData.placement }}</span></p>
+                    <p><span>🏆</span> Top: <span class="player-placement">#{{ globalData.placement }}</span></p>
                 </div>
                 <div class="player-points">
-                    <p>Points: {{ globalData.points }}</p>
+                    <p>✨ Points: {{ globalData.points }}</p>
                 </div>
             </div>
 
@@ -46,7 +46,6 @@
                 </div>
             </div>
             </div>
-
             <div class="extended-con">
                 <div class="extended-level">
                     <h2 class="name2">🌟 Extended levels</h2>

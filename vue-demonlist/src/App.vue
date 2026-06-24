@@ -6,9 +6,13 @@
   <header>
     <div class="bg">
       <img src="./assets/image/icon.png" width="65" height="65" class="imageLogo">
-      <h1 class="logo"><span class="gd">GD</span> Demonlist</h1>
+      <div class="mainPageNav">
+        <router-link to="/" class="mainPage">
+          <h1 class="logo"><span class="gd">GD</span> Demonlist</h1>
+        </router-link>
+      </div>
       <nav class="navigation">
-        <router-link to="/">List</router-link>
+        <router-link to="/list">List</router-link>
         <router-link to="slayer">Slayer</router-link>
       </nav>
     </div>
@@ -31,6 +35,13 @@
   text-decoration: none;
   margin-left: 30px;
   font-size: 20px;
+  font-family: Montserrat;
+  transition: 0.2s ease;
+  display: inline-block;
+}
+.mainPageNav a{
+  color: white;
+  text-decoration: none;
   font-family: Montserrat;
   transition: 0.2s ease;
   display: inline-block;

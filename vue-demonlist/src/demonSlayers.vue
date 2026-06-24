@@ -1,24 +1,34 @@
 <script setup>
-import{ ref } from 'vue';
+import{ ref, computed, onMounted } from 'vue';
 
 let loading = ref(false);
 let globalData = ref([
 
 ]);
+let search = ref('');
+let searchData = computed(() => {
+        if(!search.value){
+            return globalData.value;
+        }
+        return globalData.value.filter(user => 
+        user.username.toLowerCase().includes(search.value.toLowerCase())
+    );
+});
 
 async function getUserList(){
     loading.value = true;
     const promise = await fetch('https://api.demonlist.org/leaderboard/user/list');
     const data = await promise.json();
-    globalData = data.data.users;
+    globalData.value = data.data.users;
+    
     console.log(data);
     loading.value = false;
 }
-getUserList();
 
-function goToUser(id){
-    window.location.href = `slayer.html?id=${id}`
-}
+onMounted(() => {
+    getUserList();
+});
+
 </script>
 
 <template>
@@ -27,10 +37,13 @@ function goToUser(id){
     </div>
 
     <h1 class="name" align="center">Top Players</h1>
+    <div class="inputCon">
+        <input type="text" v-model="search" class="input" placeholder="Player name">
+    </div>
 
     <div class="main">
     <div class="playerContainer">
-        <router-link :to="`/slayerInfo/?id=${user.id}`" v-for="user in globalData" class="transition">
+        <router-link :to="`/slayerInfo/?id=${user.id}`" v-for="user in searchData" class="transition">
         <div class="userCard">
             <p><span class="userPlacement">#{{ user.placement }}</span> {{ user.username }}</p>
             <p class="points">Points: {{ user.points }}</p>
@@ -49,6 +62,8 @@ function goToUser(id){
     max-height: 750px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-bottom: 40px;
+    border: 3px solid #25385e;
 }
 .playerContainer::-webkit-scrollbar{
     color: transparent;
@@ -112,5 +127,26 @@ function goToUser(id){
 }
 .transition{
     text-decoration: none;
+}
+.input{
+    border: 2px solid #354f83;
+    border-radius: 5px;
+    height: 25px;
+    width: 350px;
+    background: #27385a;
+    color: white;
+    font-size: 16px;
+    font-family: Montserrat;
+}
+.inputCon{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.input::placeholder{
+    color: rgba(255,255,255,0.5);
+}
+.input:focus{
+    outline: none;
 }
 </style>
