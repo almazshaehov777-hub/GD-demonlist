@@ -13,13 +13,21 @@
     }
 
     getPlayer(id);
+
+    function goToYoutube(url){
+        window.location.href = url;
+    }
+    function back(){
+        history.back();
+    }
 </script>
 
 <template>
     <div class="playerContainer">
         <div class="playerInfo">
             <div class="name-con">
-                <h1>{{ globalData.username }}</h1>
+                <button class="backBtn" @click="back()">🠔</button>
+                <h1 class="playerName">{{ globalData.username }}</h1>
             </div>
 
             <div class="player-info-main">
@@ -41,7 +49,7 @@
             <div class="main-con">
             <div class="main-level">
                 <h2 class="name">⭐ Main levels</h2>
-                <div v-for="level in globalData.levels.main" class="main-card">
+                <div v-for="level in globalData.levels.main" class="main-card" @click="goToYoutube(level.video_url)">
                     <p>{{ level.name }}</p>
                 </div>
             </div>
@@ -49,7 +57,7 @@
             <div class="extended-con">
                 <div class="extended-level">
                     <h2 class="name2">🌟 Extended levels</h2>
-                    <div v-for="level in globalData.levels.extended" class="extended-card">
+                    <div v-for="level in globalData.levels.extended" class="extended-card" @click="goToYoutube(level.video_url)">
                         <p>{{ level.name }}</p>
                     </div>
                 </div>
@@ -58,7 +66,7 @@
             <div class="advanced-con">
                 <div class="advanced-level">
                     <h2 class="name">🟢 Advanced levels</h2>
-                    <div v-for="level in globalData.levels.advanced" class="advanced-card">
+                    <div v-for="level in globalData.levels.advanced" class="advanced-card" @click="goToYoutube(level.video_url)">
                         <p>{{ level.name }}</p>
                     </div>
                 </div>
@@ -67,7 +75,7 @@
             <div class="unbounded-con">
                 <div class="unbounded-level">
                     <h2 class="name">🌐 Unbounded levels</h2>
-                    <div v-for="level in globalData.levels.unbounded" class="unbounded-card">
+                    <div v-for="level in globalData.levels.unbounded" class="unbounded-card" @click="goToYoutube(level.video_url)">
                         <p>{{ level.name }}</p>
                     </div>
                 </div>
@@ -76,7 +84,7 @@
             <div class="verified-con">
                 <div class="verified-level">
                     <h2 class="name">✅ Verified level</h2>
-                    <div v-for="level in globalData.levels.verified" class="verified-card">
+                    <div v-for="level in globalData.levels.verified" class="verified-card" @click="goToYoutube(level.video_url)">
                         <p>{{ level.name }}</p>
                     </div>
                 </div>
@@ -93,6 +101,8 @@
     border: 3px solid #334468;
     border-radius: 20px;
     overflow-y: auto;
+    margin-bottom: 70px;
+    margin-top: 70px;
 }
 .playerInfo::-webkit-scrollbar{
     color: transparent;
@@ -116,6 +126,15 @@
     font-size: 14px;
     text-align: center;
     margin: 3px;
+    transition: 0.2s ease;
+    cursor: pointer;
+    align-items: center;
+}
+.main-card:hover, .extended-card:hover, .advanced-card:hover, .unbounded-card:hover{
+    transform: scale(1.02);
+    background: #324970;
+    border: 3px solid lightcoral;
+    box-shadow: -10px 10px 25px rgba(0, 0, 0, 0.5);
 }
 .main-level{
     background: linear-gradient(#c0212e, #74121a);
@@ -183,6 +202,8 @@
     font-size: 14px;
     text-align: center;
     margin: 3px;
+    transition: 0.2s ease;
+    cursor: pointer;
 }
 .verified-card{
     display: inline-block;
@@ -197,6 +218,13 @@
     font-size: 14px;
     text-align: center;
     margin: 3px;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.verified-card:hover{
+    transform: scale(1.02);
+    background: #324970;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 .verified-level{
     background: rgba(0, 255, 0, 0.3);
@@ -239,7 +267,7 @@
 }
 .name-con{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     color: lightgray;
     font-family: Montserrat;
     margin-top: 30px;
@@ -272,5 +300,31 @@
 }
 .player-points{
     color: #b4c3e6;
+}
+.backBtn{
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    border: 0;
+    font-size: 35px;
+    font-family: Montserrat;
+    cursor: pointer;
+    background: #192c50;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 5px;
+    border: 2px solid #334468;
+    transition: 0.2s ease;
+}
+.backBtn:hover{
+    background: #2a3d66;
+}
+.playerName{
+    position: relative;
+    left: -50%;
+    transform: translateX(50%);
 }
 </style>
