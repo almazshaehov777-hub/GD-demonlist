@@ -1,6 +1,10 @@
 let urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get('id');
 
+function goToYoutube(url){
+    window.location.href = url;
+}
+
 async function getLevel(){
     const promise = await fetch(`https://api.demonlist.org/level/classic/get?id=${id}`);
     const data = await promise.json();
@@ -22,6 +26,8 @@ async function getLevel(){
     const ingameID = document.getElementById('ingameID');
     const listPercent = document.getElementById('listPercent');
     const image = document.getElementById('image');
+    const TR = document.getElementById('TR');
+    const CR = document.getElementById('CR');
 
     placement.textContent = `#${data.data.placement}`
     name.textContent = `${data.data.name} By ${data.data.holder}`;
@@ -33,6 +39,32 @@ async function getLevel(){
     ingameID.textContent = `ID: ${data.data.ingame_id}`
     listPercent.textContent = `List %: ${data.data.list_percent}`
     image.src = imageUrl;
+
+
+    const promiseRecord = await fetch(`https://api.demonlist.org/level/classic/record/list?level_id=${data.data.id}`);
+    const dataRecord = await promiseRecord.json();
+    console.log(dataRecord);
+
+    const recordCon = document.getElementById('record');
+    let html = '';
+    if(dataRecord.data.records.length != 0){
+        for(let i = 0; i<dataRecord.data.records.length; ++i){
+            const record = dataRecord.data.records[i];
+            html += `
+            <div class="record" onclick="goToYoutube('${record.video_url}')">
+                <p class="playerName">${record.user.username}</p>
+                <p class="percent">${record.percent}%</p>
+            </div>
+        `
+        }  
+    }else{
+        html = `
+            <h2 class="noRecord" align="center">🏆 Пока нет рекордов</h2>
+        `
+    }
+    TR.textContent = `Total records: ${dataRecord.data.total_count}`
+    CR.textContent = `100% complete: ${dataRecord.data.completed_count}`
+    recordCon.innerHTML = html;
 }
 
 getLevel();

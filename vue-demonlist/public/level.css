@@ -60,6 +60,7 @@ main{
 .nameContainer{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 .verCon{
     display: flex;
@@ -69,7 +70,7 @@ main{
     color: lightgreen;
     font-size: 18px;
     font-family: Montserrat;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .card{
     background: #243452;
@@ -104,10 +105,61 @@ main{
     background: #19243a;
 }
 #image{
-    width: 450px;
+    width: 550px;
     clip-path: inset(12.5% 0% 12.5% 0% round 10px);
 }
 .imageCon{
     display: flex;
     justify-content: center;
+}
+.record{
+    background: #19243a;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: Montserrat;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 3px solid #394f7c;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.record:hover{
+    transform: scale(1.02);
+    border: 3px solid lightcoral;
+    box-shadow: -10px 10px 25px rgba(0, 0, 0, 0.3);
+}
+.recordsContainer{
+    margin-top: 50px;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #26344F;
+    border-radius: 10px;
+    padding: 20px;
+}
+.recordsContainer::-webkit-scrollbar{
+    background: #26344F;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.percent{
+    margin-right: 20px;
+}
+.playerName{
+    margin-left: 15px;
+}
+.noRecord{
+    color: white;
+    opacity: 0.4;
+}
+.recordCountCon{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: Montserrat;
+    color: white;
 }

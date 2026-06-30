@@ -5,7 +5,9 @@ let loading = ref(false);
 let globalData = ref([
 
 ]);
+let offset = ref(0);
 let search = ref('');
+let pageCount = ref(1);
 let searchData = computed(() => {
         if(!search.value){
             return globalData.value;
@@ -15,15 +17,29 @@ let searchData = computed(() => {
     );
 });
 
+function clickToLeft(){
+    if(pageCount.value > 1){
+        --pageCount.value;
+        offset.value = offset.value - 50;
+        getUserList();
+    }
+}
+function clickToRight(){
+    ++pageCount.value;
+    offset.value = offset.value + 50;
+    getUserList()
+}
+
 async function getUserList(){
     loading.value = true;
-    const promise = await fetch('https://api.demonlist.org/leaderboard/user/list');
+    const promise = await fetch(`https://api.demonlist.org/leaderboard/user/list/?offset=${offset.value}`);
     const data = await promise.json();
     globalData.value = data.data.users;
     
     console.log(data);
     loading.value = false;
 }
+
 
 onMounted(() => {
     getUserList();
@@ -39,6 +55,12 @@ onMounted(() => {
     <h1 class="name" align="center">Top Players</h1>
     <div class="inputCon">
         <input type="text" v-model="search" class="input" placeholder="Player name">
+    </div>
+
+    <div class="offsetCon">
+        <button @click="clickToLeft()">«</button>
+        <b>{{ pageCount }}</b>
+        <button @click="clickToRight()">»</button>
     </div>
 
     <div class="main">
@@ -148,5 +170,34 @@ onMounted(() => {
 }
 .input:focus{
     outline: none;
+}
+.offsetCon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.offsetCon > b{
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Montserrat;
+    font-size: 24px;
+}
+.offsetCon > button{
+    color: white;
+    background: #202d49;
+    border: 2px solid #24375c;
+    font-family: Montserrat;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border-radius: 10px;
+}
+.offsetCon > button:hover{
+    background: #24375c;
+    border: 2px solid #334d81;
 }
 </style>
