@@ -46,7 +46,7 @@
             </div>
             </div>
 
-            <div class="main-con">
+            <div class="main-con" v-if="globalData.levels.main.length > 0">
             <div class="main-level">
                 <h2 class="name">⭐ Main levels</h2>
                 <div v-for="level in globalData.levels.main" class="main-card" @click="goToYoutube(level.video_url)">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             </div>
-            <div class="extended-con">
+            <div class="extended-con" v-if="globalData.levels.extended.length > 0">
                 <div class="extended-level">
                     <h2 class="name2">🌟 Extended levels</h2>
                     <div v-for="level in globalData.levels.extended" class="extended-card" @click="goToYoutube(level.video_url)">
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="advanced-con">
+            <div class="advanced-con" v-if="globalData.levels.advanced.length > 0">
                 <div class="advanced-level">
                     <h2 class="name">🟢 Advanced levels</h2>
                     <div v-for="level in globalData.levels.advanced" class="advanced-card" @click="goToYoutube(level.video_url)">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="unbounded-con">
+            <div class="unbounded-con" v-if="globalData.levels.unbounded.length > 0">
                 <div class="unbounded-level">
                     <h2 class="name">🌐 Unbounded levels</h2>
                     <div v-for="level in globalData.levels.unbounded" class="unbounded-card" @click="goToYoutube(level.video_url)">
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="verified-con">
+            <div class="verified-con" v-if="globalData.levels.verified.length > 0">
                 <div class="verified-level">
                     <h2 class="name">✅ Verified level</h2>
                     <div v-for="level in globalData.levels.verified" class="verified-card" @click="goToYoutube(level.video_url)">

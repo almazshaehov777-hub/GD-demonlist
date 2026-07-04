@@ -17,6 +17,13 @@ let searchData = computed(() => {
     );
 });
 
+function inputChange(){
+    if(pageCount.value > 0){
+        offset.value = 50 * pageCount.value - 50;
+        getUserList();
+    }
+}
+
 function clickToLeft(){
     if(pageCount.value > 1){
         --pageCount.value;
@@ -61,6 +68,10 @@ onMounted(() => {
         <button @click="clickToLeft()">«</button>
         <b>{{ pageCount }}</b>
         <button @click="clickToRight()">»</button>
+    </div>
+    <div class="offsetCon">
+        <p class="inputName">Page:</p>
+        <input type="number" v-model="pageCount" v-on:change="inputChange()" class="inputPage" placeholder="Page...">
     </div>
 
     <div class="main">
@@ -199,5 +210,25 @@ onMounted(() => {
 .offsetCon > button:hover{
     background: #24375c;
     border: 2px solid #334d81;
+}
+.inputPage{
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 150px;
+    height: 25px;
+    font-size: 18px;
+    font-family: Montserrat;
+    background: #27385a;
+    border: 2px solid #354f83;
+    color: white;
+    margin-right: 10px;
+}
+.inputName{
+    font-size: 18px;
+    font-family: Montserrat;
+    color: white;
+}
+.inputName::placeholder{
+    color: rgba(255,255,255,0.5);
 }
 </style>
